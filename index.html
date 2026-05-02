@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spicey — Online Orders &amp; Reservations for Restaurants</title>
+  <meta name="description" content="Spicey helps restaurant owners accept and manage online orders and reservations from one simple dashboard." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="#" class="brand">
+        <span class="brand__mark">🌶️</span>
+        <span class="brand__name">Spicey</span>
+      </a>
+      <nav class="nav__links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn btn--primary btn--sm">Get started</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <span class="eyebrow">For restaurant owners</span>
+          <h1>Take orders &amp; reservations online — without the chaos.</h1>
+          <p class="lead">
+            Spicey is the all‑in‑one platform that helps your restaurant accept online
+            orders, manage reservations, and delight guests — from a single, beautiful dashboard.
+          </p>
+          <form class="cta-form" onsubmit="event.preventDefault(); document.getElementById('thanks').hidden = false;">
+            <input type="email" required placeholder="you@yourrestaurant.com" aria-label="Email address" />
+            <button type="submit" class="btn btn--primary">Request early access</button>
+          </form>
+          <p id="thanks" class="thanks" hidden>Thanks! We'll be in touch shortly. 🎉</p>
+          <div class="trust">
+            <span>★★★★★</span>
+            <p>Trusted by independent restaurants across Canada</p>
+          </div>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <div class="card card--orders">
+            <header><strong>Live orders</strong><span class="dot"></span></header>
+            <ul>
+              <li><span>#1042 · Margherita Pizza</span><em>Preparing</em></li>
+              <li><span>#1043 · Pad Thai (x2)</span><em>New</em></li>
+              <li><span>#1044 · Tiramisu</span><em>Ready</em></li>
+            </ul>
+          </div>
+          <div class="card card--reservation">
+            <header><strong>Tonight · 7:30 PM</strong></header>
+            <p>Party of 4 · Table 12</p>
+            <p class="muted">Confirmed by Sarah K.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2>Everything you need to run service smoothly</h2>
+        <p class="section__lead">From the first click to the last bite — Spicey keeps your team in sync.</p>
+        <div class="grid grid--3">
+          <article class="feature">
+            <div class="feature__icon">🧾</div>
+            <h3>Online ordering</h3>
+            <p>A branded, mobile‑first menu your guests will love. Accept pickup, delivery, and dine‑in orders with zero commissions.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon">📅</div>
+            <h3>Reservations</h3>
+            <p>Manage tables, parties, and waitlists in real time. Automatic SMS confirmations cut down on no‑shows.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon">📊</div>
+            <h3>One smart dashboard</h3>
+            <p>See orders, bookings, and revenue at a glance. Built for owners and staff — easy enough for day one.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon">💳</div>
+            <h3>Fast payments</h3>
+            <p>Accept all major cards and digital wallets. Funds settle directly to your bank, with transparent fees.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon">🔔</div>
+            <h3>Real‑time alerts</h3>
+            <p>New order? Cancellation? Your team gets notified instantly on any device — no missed tickets.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon">🍽️</div>
+            <h3>Menu management</h3>
+            <p>Update items, prices, and 86’d dishes in seconds. Changes sync everywhere your menu is shown.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section section--alt">
+      <div class="container">
+        <h2>Up and running in a single afternoon</h2>
+        <ol class="steps">
+          <li>
+            <span class="step__num">1</span>
+            <h3>Create your restaurant</h3>
+            <p>Add your menu, hours, and table layout. Import from a PDF or your existing site.</p>
+          </li>
+          <li>
+            <span class="step__num">2</span>
+            <h3>Share your link</h3>
+            <p>Get a custom Spicey page or embed ordering &amp; booking on your own website.</p>
+          </li>
+          <li>
+            <span class="step__num">3</span>
+            <h3>Start serving</h3>
+            <p>Take orders &amp; reservations from anywhere. Your team gets a single, calm queue to work from.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="container">
+        <h2>Simple pricing, no surprises</h2>
+        <p class="section__lead">Start free. Upgrade when you're ready.</p>
+        <div class="grid grid--3 pricing">
+          <article class="plan">
+            <h3>Starter</h3>
+            <p class="price">$0<span>/mo</span></p>
+            <ul>
+              <li>Up to 50 orders/month</li>
+              <li>Basic reservations</li>
+              <li>Email support</li>
+            </ul>
+            <a href="#contact" class="btn btn--ghost">Get started</a>
+          </article>
+          <article class="plan plan--featured">
+            <span class="badge">Most popular</span>
+            <h3>Growth</h3>
+            <p class="price">$49<span>/mo</span></p>
+            <ul>
+              <li>Unlimited orders</li>
+              <li>Advanced reservations &amp; waitlist</li>
+              <li>SMS notifications</li>
+              <li>Priority support</li>
+            </ul>
+            <a href="#contact" class="btn btn--primary">Start 14‑day trial</a>
+          </article>
+          <article class="plan">
+            <h3>Pro</h3>
+            <p class="price">$99<span>/mo</span></p>
+            <ul>
+              <li>Everything in Growth</li>
+              <li>Multi‑location</li>
+              <li>Custom integrations</li>
+              <li>Dedicated manager</li>
+            </ul>
+            <a href="#contact" class="btn btn--ghost">Contact sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section--cta">
+      <div class="container cta">
+        <h2>Ready to serve smarter?</h2>
+        <p>Join the waitlist and we'll help you get set up — for free.</p>
+        <a href="mailto:hello@spicey.app" class="btn btn--primary btn--lg">hello@spicey.app</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Spicey. Made with ❤️ in Canada 🇨🇦</p>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
