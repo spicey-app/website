@@ -26,6 +26,7 @@ jobs:
         env:
           PUBLIC_POSTHOG_KEY: ${{ vars.PUBLIC_POSTHOG_KEY }}
           PUBLIC_POSTHOG_HOST: ${{ vars.PUBLIC_POSTHOG_HOST }}
+          PUBLIC_POSTHOG_UI_HOST: ${{ vars.PUBLIC_POSTHOG_UI_HOST }}
 
   deploy:
     needs: build
