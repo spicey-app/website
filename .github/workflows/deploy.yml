@@ -26,7 +26,7 @@ jobs:
         env:
           PUBLIC_POSTHOG_KEY: ${{ vars.PUBLIC_POSTHOG_KEY }}
           PUBLIC_POSTHOG_HOST: ${{ vars.PUBLIC_POSTHOG_HOST }}
-          PUBLIC_BUTTONDOWN_USERNAME: ${{ vars.PUBLIC_BUTTONDOWN_USERNAME }}
+          PUBLIC_NEWSLETTER_ENDPOINT: ${{ vars.PUBLIC_NEWSLETTER_ENDPOINT }}
 
   deploy:
     needs: build
