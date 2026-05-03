@@ -1,0 +1,28 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Get restaurant growth tips in your inbox',
+  description = 'One short email per week. No spam, unsubscribe anytime.',
+} = Astro.props;
+
+const username = import.meta.env.PUBLIC_BUTTONDOWN_USERNAME;
+const action = username
+  ? `https://buttondown.email/api/emails/embed-subscribe/${username}`
+  : '#';
+---
+<aside class="newsletter">
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <form
+    action={action}
+    method="post"
+    target="popupwindow"
+    onsubmit={username ? `window.open('https://buttondown.email/${username}', 'popupwindow')` : 'event.preventDefault(); alert("Newsletter not configured yet.");'}
+  >
+    <input type="email" name="email" required placeholder="you@yourrestaurant.com" aria-label="Email address" />
+    <button type="submit" class="btn btn--primary">Subscribe</button>
+  </form>
+</aside>

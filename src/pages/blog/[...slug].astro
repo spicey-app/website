@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: { '@type': 'Organization', name: post.data.author },
+  publisher: { '@type': 'Organization', name: 'Spicey' },
+  mainEntityOfPage: new URL(`/blog/${post.slug}`, Astro.site).toString(),
+  keywords: post.data.tags.join(', '),
+};
+---
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  article={true}
+  publishedTime={post.data.pubDate.toISOString()}
+  modifiedTime={post.data.updatedDate?.toISOString()}
+  tags={post.data.tags}
+  jsonLd={articleJsonLd}
+>
+  <article class="article">
+    <div class="container">
+      <header class="article__header">
+        <p class="article__meta">
+          <time datetime={post.data.pubDate.toISOString()}>{dateFmt(post.data.pubDate)}</time>
+          <span>·</span>
+          <span>{post.data.readTime ?? '5 min read'}</span>
+          <span>·</span>
+          <span>{post.data.author}</span>
+        </p>
+        <h1>{post.data.title}</h1>
+        <p class="lead" style="margin: 0 auto; max-width: 56ch;">{post.data.description}</p>
+        {post.data.tags.length > 0 && (
+          <p style="margin-top: 16px;">
+            {post.data.tags.map((t) => (
+              <a href={`/blog/tags/${t}`} class="tag">#{t}</a>
+            ))}
+          </p>
+        )}
+      </header>
+      <div class="article__body">
+        <Content />
+      </div>
+      <NewsletterForm />
+    </div>
+  </article>
+</BaseLayout>

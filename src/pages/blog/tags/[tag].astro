@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const tagSet = new Set<string>();
+  posts.forEach((p) => p.data.tags.forEach((t) => tagSet.add(t)));
+  return Array.from(tagSet).map((tag) => ({
+    params: { tag },
+    props: { posts: posts.filter((p) => p.data.tags.includes(tag)) },
+  }));
+}
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout
+  title={`#${tag} — Spicey blog`}
+  description={`Articles tagged ${tag} from the Spicey blog.`}
+>
+  <section class="section">
+    <div class="container">
+      <p><a href="/blog" class="post__link">← All posts</a></p>
+      <h2>Tagged "{tag}"</h2>
+      <p class="section__lead">{sorted.length} {sorted.length === 1 ? 'article' : 'articles'}.</p>
+      <div class="grid grid--3">
+        {sorted.map((post) => (
+          <article class="post">
+            <a href={`/blog/${post.slug}`} style="display: contents;">
+              <div class="post__thumb" style={`background: ${post.data.heroGradient ?? 'linear-gradient(135deg, #ffd9c2, #ffb38a)'};`}>
+                {post.data.heroEmoji ?? '📝'}
+              </div>
+              <div class="post__body">
+                <span class="post__meta">{dateFmt(post.data.pubDate)} · {post.data.readTime ?? '5 min read'}</span>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+                <span class="post__link">Read more →</span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
